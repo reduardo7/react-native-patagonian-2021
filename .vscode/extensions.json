@@ -1,0 +1,16 @@
+{
+  "recommendations": [
+    "msjsdiag.vscode-react-native",
+    "planbcoding.vscode-react-refactor",
+    "editorconfig.editorconfig",
+    "in4margaret.compareit",
+    "streetsidesoftware.code-spell-checker",
+    "xyz.local-history",
+    "leizongmin.node-module-intellisense",
+    "eg2.vscode-npm-script",
+    "christian-kohler.npm-intellisense",
+    "christian-kohler.path-intellisense",
+    "esbenp.prettier-vscode",
+    "ms-vscode.vscode-typescript-tslint-plugin"
+  ]
+}

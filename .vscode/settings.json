@@ -1,0 +1,12 @@
+{
+  "editor.formatOnSave": true,
+  "files.exclude": {
+    "**/.history": true
+  },
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.watcherExclude": {
+    "**/.history": true
+  },
+  "cSpell.words": ["reactnativepatagonian"]
+}
