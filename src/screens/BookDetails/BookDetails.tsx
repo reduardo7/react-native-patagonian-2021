@@ -4,7 +4,7 @@ import { RouteProp } from '@react-navigation/native';
 
 import styles from './styles';
 import { Header, Separator, Typography } from '../../components';
-import { getBookById } from '../../services';
+import { Books } from '../../services';
 import { colors } from '../../utils/theme';
 
 export type Route = RouteProp<
@@ -29,14 +29,9 @@ const BookDetailsScreen = ({ route }: { route: Route }) => {
   const getBooksData = async () => {
     setLoading(true);
     try {
-      const { success, data } = await getBookById(id);
-      if (success) {
-        setBook(data);
-      } else {
-        Alert.alert(`Error getting the details of the book: ${title}`);
-      }
+      const { data } = await Books.getById(id);
+      setBook(data);
     } catch (error) {
-      console.log(`Error getting book with id: ${id} in BookDetailsScreen`, error);
       Alert.alert(`Error getting the details of the book: ${title}`);
     } finally {
       setLoading(false);

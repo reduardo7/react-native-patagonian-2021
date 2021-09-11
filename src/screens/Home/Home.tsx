@@ -4,7 +4,7 @@ import { useNetInfo } from '@react-native-community/netinfo';
 
 import styles from './styles';
 import { DefaultButton, Header, Separator, Typography } from '../../components';
-import { getAllBooks } from '../../services';
+import { Books } from '../../services';
 import { goToScreen } from '../../navigation/controls';
 import { colors } from '../../utils/theme';
 
@@ -37,15 +37,11 @@ const HomeScreen = () => {
 
   const getBooksData = async () => {
     setLoading(true);
+
     try {
-      const { success, data } = await getAllBooks();
-      if (success) {
-        setBooks(data);
-      } else {
-        Alert.alert('Error getting books on Home Screen');
-      }
+      const { data } = await Books.getAll();
+      setBooks(data);
     } catch (error) {
-      console.log('Error getting books on Home Screen', error);
       Alert.alert('Error getting books on Home Screen');
     } finally {
       setLoading(false);
