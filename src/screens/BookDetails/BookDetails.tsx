@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, View } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
 
+import styles from './styles';
 import { Header, Separator, Typography } from '../../components';
 import { getBookById } from '../../services';
-import styles from './styles';
 import { colors } from '../../utils/theme';
 
 export type Route = RouteProp<

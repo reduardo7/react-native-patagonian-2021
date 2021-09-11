@@ -2,17 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, FlatList, TouchableOpacity, View } from 'react-native';
 import { useNetInfo } from '@react-native-community/netinfo';
 
-import { DefaultButton, Header, Separator, Typography } from '../../components';
 import styles from './styles';
-
+import { DefaultButton, Header, Separator, Typography } from '../../components';
 import { getAllBooks } from '../../services';
 import { goToScreen } from '../../navigation/controls';
 import { colors } from '../../utils/theme';
-import { COMPONENT_NAME as EXPERIMENTAL } from '../Experimental/Experimental';
-
-const goToExperimentalScreen = () => {
-  goToScreen(EXPERIMENTAL);
-};
 
 const ListItem = ({ id, title }: { id: number; title: string }) => (
   <TouchableOpacity
@@ -86,7 +80,7 @@ const HomeScreen = () => {
       <Header showBackButton={false} title="Home Screen" />
       <View style={styles.mainContainer}>
         <Separator size={20} />
-        <DefaultButton text="Go To Experimental Screen" onPress={goToExperimentalScreen} />
+        <DefaultButton text="Go To ... Screen" onPress={() => {}} />
         <Separator size={20} />
         <FlatList
           keyExtractor={flatlistKeyExtractor}
