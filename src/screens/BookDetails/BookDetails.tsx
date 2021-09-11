@@ -1,14 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, View } from 'react-native';
+import { RouteProp } from '@react-navigation/native';
 
 import { Header, Separator, Typography } from '../../components';
 import { getBookById } from '../../services';
-
 import styles from './styles';
 import { colors } from '../../utils/theme';
 
-// @ts-ignore
-const BookDetailsScreen = ({ route }) => {
+export type Route = RouteProp<
+  Record<
+    string,
+    {
+      id: number;
+      title: string;
+    }
+  >,
+  string
+>;
+
+export const COMPONENT_NAME = 'BookDetails';
+
+const BookDetailsScreen = ({ route }: { route: Route }) => {
   const { id, title } = route.params;
 
   const [book, setBook] = useState<Book | null>(null);

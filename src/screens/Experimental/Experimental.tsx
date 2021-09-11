@@ -8,6 +8,8 @@ import { colors } from '../../utils/theme';
 
 const arr = Array.from({ length: 6 }, (_, index) => index);
 
+export const COMPONENT_NAME = 'Experimental';
+
 const ExperimentalScreen = () => {
   const [isModalVisible, setModalVisible] = useState(false);
 

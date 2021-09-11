@@ -8,9 +8,10 @@ import styles from './styles';
 import { getAllBooks } from '../../services';
 import { goToScreen } from '../../navigation/controls';
 import { colors } from '../../utils/theme';
+import { COMPONENT_NAME as EXPERIMENTAL } from '../Experimental/Experimental';
 
 const goToExperimentalScreen = () => {
-  goToScreen('Experimental');
+  goToScreen(EXPERIMENTAL);
 };
 
 const ListItem = ({ id, title }: { id: number; title: string }) => (
@@ -31,6 +32,8 @@ const flatlistKeyExtractor = (item: Book) => `${item.id}`;
 const renderFlatlistItem = ({ item }: { item: Book }) => (
   <ListItem id={item.id} title={item.title} />
 );
+
+export const COMPONENT_NAME = 'Home';
 
 const HomeScreen = () => {
   const [books, setBooks] = useState<Book[]>([]);

@@ -6,9 +6,10 @@ import styles from './styles';
 
 import { goToScreen, resetNavigation } from '../../navigation/controls';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { COMPONENT_NAME as EXPERIMENTAL } from '../Experimental/Experimental';
 
 const goToExperimentalScreen = () => {
-  goToScreen('Experimental');
+  goToScreen(EXPERIMENTAL);
 };
 
 const logOut = async () => {
