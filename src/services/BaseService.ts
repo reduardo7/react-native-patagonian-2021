@@ -4,9 +4,14 @@ interface IResponse<T> {
   data: T;
 }
 
-export abstract class BaseService {
-  protected static async request<T = any>(uri: string): Promise<IResponse<T>> {
-    let data: T;
+/**
+ * @see https://github.com/theDavidBarton/the-harry-potter-database
+ */
+export abstract class BaseService<T = any> {
+  abstract get model(): string;
+
+  public async request<R = T | T[]>(uri: string): Promise<IResponse<R>> {
+    let data: R;
 
     // Remove starting "/"
     uri = uri.replace(/^\/+/, '');
@@ -33,6 +38,34 @@ export abstract class BaseService {
 
     return {
       data,
-    } as IResponse<T>;
+    } as IResponse<R>;
+  }
+
+  /**
+   * Get all items.
+   *
+   * @returns All items.
+   */
+  public search(search: string) {
+    return this.request<T[]>(`/${this.model}?search=${encodeURI(search.trim())}`);
+  }
+
+  /**
+   * Get all items.
+   *
+   * @returns All items.
+   */
+  public getAll() {
+    return this.request<T[]>(`/${this.model}/all`);
+  }
+
+  /**
+   * Get by ID.
+   *
+   * @param id Item ID.
+   * @returns Item details.
+   */
+  public async getById(id: number) {
+    return this.request<T>(`/${this.model}/${id}`);
   }
 }
