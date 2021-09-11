@@ -10,7 +10,7 @@ export class Books extends BaseService {
    * @returns Get Books list.
    */
   public static getAll() {
-    return this.request('/books/all');
+    return this.request<Book[]>('/books/all');
   }
 
   /**
@@ -20,6 +20,6 @@ export class Books extends BaseService {
    * @returns Book details.
    */
   public static async getById(id: number) {
-    return this.request(`/books/${id}`);
+    return this.request<Book>(`/books/${id}`);
   }
 }

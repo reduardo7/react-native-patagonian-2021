@@ -7,16 +7,7 @@ import { Header, Separator, Typography } from '../../components';
 import { Books } from '../../services';
 import { colors } from '../../utils/theme';
 
-export type Route = RouteProp<
-  Record<
-    string,
-    {
-      id: number;
-      title: string;
-    }
-  >,
-  string
->;
+export type Route = RouteProp<Record<string, Book>, string>;
 
 export const COMPONENT_NAME = 'BookDetails';
 
