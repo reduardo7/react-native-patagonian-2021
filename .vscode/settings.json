@@ -8,5 +8,5 @@
   "files.watcherExclude": {
     "**/.history": true
   },
-  "cSpell.words": ["reactnativepatagonian"]
+  "cSpell.words": ["flatlist", "reactnativepatagonian"]
 }
