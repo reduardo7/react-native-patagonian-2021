@@ -42,9 +42,10 @@ export abstract class BaseService<T = any> {
   }
 
   /**
-   * Get all items.
+   * Search items.
    *
-   * @returns All items.
+   * @param search Search text.
+   * @returns Result items.
    */
   public search(search: string) {
     return this.request<T[]>(`/${this.model}?search=${encodeURI(search.trim())}`);
