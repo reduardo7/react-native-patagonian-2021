@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, View } from 'react-native';
-
-import { Header, Separator, Typography } from '../../components';
-import { getBookById } from '../../services';
+import { RouteProp } from '@react-navigation/native';
 
 import styles from './styles';
+import { Header, Separator, Typography } from '../../components';
+import { Books } from '../../services';
 import { colors } from '../../utils/theme';
 
-// @ts-ignore
-const BookDetailsScreen = ({ route }) => {
+export type Route = RouteProp<Record<string, Book>, string>;
+
+export const COMPONENT_NAME = 'BookDetails';
+
+const BookDetailsScreen = ({ route }: { route: Route }) => {
   const { id, title } = route.params;
 
   const [book, setBook] = useState<Book | null>(null);
@@ -17,14 +20,9 @@ const BookDetailsScreen = ({ route }) => {
   const getBooksData = async () => {
     setLoading(true);
     try {
-      const { success, data } = await getBookById(id);
-      if (success) {
-        setBook(data);
-      } else {
-        Alert.alert(`Error getting the details of the book: ${title}`);
-      }
+      const { data } = await Books.getById(id);
+      setBook(data);
     } catch (error) {
-      console.log(`Error getting book with id: ${id} in BookDetailsScreen`, error);
       Alert.alert(`Error getting the details of the book: ${title}`);
     } finally {
       setLoading(false);

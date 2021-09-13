@@ -1,18 +1,16 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import AuthStack from './AuthStack';
-import TabNavigator from './TabNavigator';
-import { BookDetailsScreen, ExperimentalScreen } from '../screens';
+import TabNavigator, { COMPONENT_NAME as TAB_NAVIGATOR } from './TabNavigator';
+import { BookDetailsScreen } from '../screens';
+import { COMPONENT_NAME as BOOK_DETAILS } from '../screens/BookDetails/BookDetails';
 
 const Stack = createNativeStackNavigator();
 
 const MainNavigator = () => (
-  <Stack.Navigator initialRouteName="AuthStack" screenOptions={{ headerShown: false }}>
-    <Stack.Screen name="AuthStack" component={AuthStack} />
-    <Stack.Screen name="TabNavigator" component={TabNavigator} />
-    <Stack.Screen name="BookDetails" component={BookDetailsScreen} />
-    <Stack.Screen name="Experimental" component={ExperimentalScreen} />
+  <Stack.Navigator initialRouteName={TAB_NAVIGATOR} screenOptions={{ headerShown: false }}>
+    <Stack.Screen name={TAB_NAVIGATOR} component={TabNavigator} />
+    <Stack.Screen name={BOOK_DETAILS} component={BookDetailsScreen} />
   </Stack.Navigator>
 );
 

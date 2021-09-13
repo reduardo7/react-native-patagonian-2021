@@ -4,9 +4,15 @@ import {
   StackActions,
 } from '@react-navigation/native';
 
+import { COMPONENT_NAME as BOOK_DETAILS } from '../screens/BookDetails/BookDetails';
+import { COMPONENT_NAME as HOME } from '../screens/Home/Home';
+import { COMPONENT_NAME as TAB_NAVIGATOR } from './TabNavigator';
+
+type ScreenNames = typeof BOOK_DETAILS | typeof HOME | typeof TAB_NAVIGATOR;
+
 export const navigationRef = createNavigationContainerRef();
 
-export function goToScreen(name: string, params: object = {}) {
+export function goToScreen(name: ScreenNames, params: object = {}) {
   if (navigationRef.isReady()) {
     navigationRef.dispatch(CommonActions.navigate(name, params));
   }
@@ -18,19 +24,8 @@ export function goBack() {
   }
 }
 
-export function replaceRoute(name: string, params: object = {}) {
+export function replaceRoute(name: ScreenNames, params: object = {}) {
   if (navigationRef.isReady()) {
     navigationRef.dispatch(StackActions.replace(name, params));
-  }
-}
-
-export function resetNavigation() {
-  if (navigationRef.isReady()) {
-    navigationRef.dispatch(
-      CommonActions.reset({
-        index: 0,
-        routes: [{ name: 'AuthStack' }],
-      }),
-    );
   }
 }
