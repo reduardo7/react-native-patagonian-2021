@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, FlatList, TouchableOpacity, View } from 'react-native';
 import { useNetInfo } from '@react-native-community/netinfo';
 import styles from './styles';
-import { Header, Separator, Typography } from '../../components';
+import { Separator, Typography } from '../../components';
 import { Books } from '../../services';
 import { goToScreen } from '../../navigation/controls';
 import { colors } from '../../utils/theme';
 import TextInputIcon from '../../components/TextInputIcon';
+import { IIF } from '../../utils/IF';
 
 const ListItem = ({ id, title }: { id: number; title: string }) => (
   <TouchableOpacity
@@ -32,15 +33,15 @@ export const COMPONENT_NAME = 'Home';
 const HomeScreen = () => {
   const [books, setBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [inputText, setInputText] = useState('');
+  const [inputText, setInputText] = useState<string>('');
 
   const netInfo = useNetInfo();
 
-  const getBooksData = async () => {
+  const getBooksData = async (search: string = '') => {
     setLoading(true);
 
     try {
-      const { data } = await Books.getAll();
+      const { data } = await Books.search(search);
       setBooks(data);
     } catch (error) {
       Alert.alert('Error getting books on Home Screen');
@@ -50,8 +51,8 @@ const HomeScreen = () => {
   };
 
   useEffect(() => {
-    getBooksData();
-  }, []);
+    getBooksData(inputText);
+  }, [inputText]);
 
   if (!netInfo.isConnected) {
     return (
@@ -61,41 +62,28 @@ const HomeScreen = () => {
     );
   }
 
-  if (loading) {
-    return (
-      <>
-        <Header showBackButton={false} title="Home Screen" />
-        <View style={styles.wholeScreenCenter}>
-          <ActivityIndicator size="large" color={colors.mainOrange} />
-        </View>
-      </>
-    );
-  }
-
   return (
     <>
       <View style={styles.mainContainer}>
         <Separator size={20} />
-        <TextInputIcon
-          // allowFontScaling={false}
-          // autoCapitalize="none"
-          // autoCorrect={false}
-          placeholder="Search a book"
-          value={inputText}
-          onChangeText={setInputText}
-          // style={styles.textInput}
-        />
+        <TextInputIcon placeholder="Search a book" value={inputText} onChangeText={setInputText} />
         <Separator size={20} />
-        <FlatList
-          keyExtractor={flatlistKeyExtractor}
-          refreshing={loading}
-          onRefresh={getBooksData}
-          data={books}
-          renderItem={renderFlatlistItem}
-          ItemSeparatorComponent={Separator}
-          contentContainerStyle={styles.flatlistContent}
-          style={styles.flatList}
-        />
+        {IIF(loading)
+          .THEN(
+            <ActivityIndicator size="large" style={styles.flatList} color={colors.mainOrange} />,
+          )
+          .ELSE(
+            <FlatList
+              keyExtractor={flatlistKeyExtractor}
+              refreshing={loading}
+              onRefresh={getBooksData}
+              data={books}
+              renderItem={renderFlatlistItem}
+              ItemSeparatorComponent={Separator}
+              contentContainerStyle={styles.flatlistContent}
+              style={styles.flatList}
+            />,
+          )}
       </View>
     </>
   );

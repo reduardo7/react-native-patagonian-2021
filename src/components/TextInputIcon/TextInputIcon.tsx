@@ -1,24 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { TextInput, View } from 'react-native';
-import styles from './styles';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import { useDebounce } from 'use-debounce';
+import styles from './styles';
 
 interface Props {
+  /**
+   * Initial value.
+   */
   value: string;
   onChangeText: (value: string) => void;
   placeholder?: string;
-  icon?: string;
+  icon?: 'search';
 }
 
-const TextInputIcon = ({ value, onChangeText, placeholder, icon = 'search' }: Props) => {
+const TextInputIcon = ({ value, onChangeText, placeholder = '', icon = 'search' }: Props) => {
+  const [inputValue, setInputValue] = useState<string>(value);
+  const [newValue] = useDebounce(inputValue, 1000);
+
+  useEffect(() => onChangeText(newValue), [newValue, onChangeText]);
+
   return (
     <View style={styles.searchSection}>
       <MaterialIcon name={icon} style={styles.searchIcon} size={20} color="#000" />
       <TextInput
         style={styles.input}
         placeholder={placeholder}
-        value={value}
-        onChangeText={onChangeText}
+        defaultValue={value}
+        onChangeText={setInputValue}
         underlineColorAndroid="transparent"
       />
     </View>

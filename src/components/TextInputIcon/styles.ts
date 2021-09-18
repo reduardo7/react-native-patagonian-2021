@@ -7,6 +7,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
+    borderRadius: 10,
+    height: 50,
+    paddingHorizontal: 15,
+    width: '90%',
   },
   searchIcon: {
     padding: 10,
