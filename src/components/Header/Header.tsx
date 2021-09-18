@@ -2,12 +2,10 @@ import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
 import Separator from '../Separator';
 import Typography from '../Typography';
 import styles from './styles';
 import { colors } from '../../utils/theme';
-
 import { goBack } from '../../navigation/controls';
 
 interface Props {
@@ -18,13 +16,13 @@ interface Props {
   title: string;
 }
 
-const Header = ({
-  onPressBackButton,
-  onPressRightButton,
+const Header: React.FC<Props> = ({
+  onPressBackButton = goBack,
+  onPressRightButton = () => {},
   RightSideComponent,
-  showBackButton,
+  showBackButton = true,
   title,
-}: Props) => {
+}) => {
   return (
     <>
       <SafeAreaView edges={['top']} />
@@ -51,12 +49,6 @@ const Header = ({
       </View>
     </>
   );
-};
-
-Header.defaultProps = {
-  onPressBackButton: goBack,
-  onPressRightButton: () => {},
-  showBackButton: true,
 };
 
 export default Header;

@@ -14,7 +14,12 @@ interface Props {
   icon?: 'search';
 }
 
-const TextInputIcon = ({ value, onChangeText, placeholder = '', icon = 'search' }: Props) => {
+const TextInputIcon: React.FC<Props> = ({
+  value,
+  onChangeText,
+  placeholder = '',
+  icon = 'search',
+}) => {
   const [inputValue, setInputValue] = useState<string>(value);
   const [newValue] = useDebounce(inputValue, 1000);
 

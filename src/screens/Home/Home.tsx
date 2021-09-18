@@ -1,31 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Alert, FlatList, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Alert, FlatList, View } from 'react-native';
 import { useNetInfo } from '@react-native-community/netinfo';
 import styles from './styles';
-import { Separator, Typography } from '../../components';
+import { BookDetailsItem, Separator, Typography } from '../../components';
 import { Books } from '../../services';
-import { goToScreen } from '../../navigation/controls';
 import { colors } from '../../utils/theme';
 import TextInputIcon from '../../components/TextInputIcon';
 import { IIF } from '../../utils/IF';
 
-const ListItem = ({ id, title }: { id: number; title: string }) => (
-  <TouchableOpacity
-    onPress={() => goToScreen('BookDetails', { id, title })}
-    style={styles.listItemContainerShadow}
-  >
-    <View style={styles.listItemContainer}>
-      <Typography numberOfLines={2} align="center">
-        {title}
-      </Typography>
-    </View>
-  </TouchableOpacity>
-);
-
 const flatlistKeyExtractor = (item: Book) => `${item.id}`;
 
 const renderFlatlistItem = ({ item }: { item: Book }) => (
-  <ListItem id={item.id} title={item.title} />
+  <BookDetailsItem id={item.id} title={item.title} />
 );
 
 export const COMPONENT_NAME = 'Home';

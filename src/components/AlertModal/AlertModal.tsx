@@ -1,10 +1,8 @@
 import React from 'react';
 import { Modal, View } from 'react-native';
-
 import DefaultButton from '../DefaultButton';
 import Separator from '../Separator';
 import Typography from '../Typography';
-
 import styles from './styles';
 
 interface Props {
@@ -16,14 +14,14 @@ interface Props {
   visible: boolean;
 }
 
-const AlertModal = ({
+const AlertModal: React.FC<Props> = ({
   message,
   onPressPrimaryButton,
   onPressSecondaryButton,
   primaryButtonText,
-  secondaryButtonText,
+  secondaryButtonText = '',
   visible,
-}: Props) => (
+}) => (
   <Modal animationType="fade" transparent visible={visible}>
     <View style={styles.mainContainer}>
       <View style={styles.innerAlert}>
@@ -50,10 +48,5 @@ const AlertModal = ({
     </View>
   </Modal>
 );
-
-AlertModal.defaultProps = {
-  onPressSecondaryButton: null,
-  secondaryButtonText: '',
-};
 
 export default AlertModal;

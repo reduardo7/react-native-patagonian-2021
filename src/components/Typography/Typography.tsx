@@ -1,6 +1,5 @@
 import React, { ReactNode } from 'react';
 import { Text } from 'react-native';
-
 import { colors } from '../../utils/theme';
 
 const typographyVariant = {
@@ -9,31 +8,38 @@ const typographyVariant = {
   medium: 'Raleway-Medium',
   regular: 'Raleway-Regular',
 };
-interface Props {
+
+interface StyleProps {
   align?: 'left' | 'center' | 'right' | 'justify';
-  children: ReactNode;
   color?: string;
-  numberOfLines?: number;
   size?: number;
   variant?: keyof typeof typographyVariant;
 }
 
-const getTextStyle = ({
-  align,
-  color,
-  size,
-  variant = 'regular',
-}: Pick<Props, 'align' | 'color' | 'size' | 'variant'>) => {
+interface Props extends StyleProps {
+  children: ReactNode;
+  numberOfLines?: number;
+}
+
+const getTextStyle = ({ align, color, size, variant = 'regular' }: StyleProps) => {
   const textStyle = {
     color,
     fontSize: size,
     textAlign: align,
     fontFamily: typographyVariant[variant],
   };
+
   return textStyle;
 };
 
-const Typography = ({ align, children, color, numberOfLines, size, variant }: Props) => {
+const Typography: React.FC<Props> = ({
+  align = 'left',
+  children,
+  color = colors.black,
+  numberOfLines,
+  size = 14,
+  variant = 'regular',
+}) => {
   const textStyle = getTextStyle({ align, color, size, variant });
 
   return (
@@ -41,13 +47,6 @@ const Typography = ({ align, children, color, numberOfLines, size, variant }: Pr
       {children}
     </Text>
   );
-};
-
-Typography.defaultProps = {
-  align: 'left',
-  color: colors.black,
-  size: 14,
-  variant: 'regular',
 };
 
 export default Typography;

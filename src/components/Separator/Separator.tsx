@@ -6,13 +6,8 @@ interface Props {
   size?: number;
 }
 
-const Separator = ({ isHorizontal, size }: Props) => (
+const Separator: React.FC<Props> = ({ isHorizontal = false, size = 10 }) => (
   <View style={isHorizontal ? { width: size } : { height: size }} />
 );
-
-Separator.defaultProps = {
-  isHorizontal: false,
-  size: 10,
-};
 
 export default Separator;
