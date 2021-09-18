@@ -13,7 +13,7 @@
     "dev:fix:launcher": "npm install -g react-native ; npm install react-native"
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "^1.15.7",
+    "@react-native-async-storage/async-storage": "^1.15.8",
     "@react-native-community/netinfo": "^6.0.1",
     "@react-navigation/bottom-tabs": "^6.0.5",
     "@react-navigation/native": "^6.0.2",

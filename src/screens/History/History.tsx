@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, FlatList, View } from 'react-native';
-import { useNetInfo } from '@react-native-community/netinfo';
 import styles from './styles';
-import { BookDetailsItem, Separator, Typography } from '../../components';
+import { BookDetailsItem, Separator } from '../../components';
 import { colors } from '../../utils/theme';
 import TextInputIcon from '../../components/TextInputIcon';
 import { IIF } from '../../utils/IF';
 import HistoryStorage, { HistoryEntry } from '../../utils/HistoryStorage';
+import { formatDate } from '../../utils/date';
 
 const flatlistKeyExtractor = (item: HistoryEntry) => `${item.params.id}`;
 
-const renderFlatlistItem = ({ item }: { item: HistoryEntry }) => (
-  <BookDetailsItem id={item.params.id} title={item.params.title} />
-);
+const renderFlatlistItem = ({ item }: { item: HistoryEntry }) => {
+  const title = `${item.params.title}\n(${formatDate(item.timestamp)})`;
+  return <BookDetailsItem id={item.params.id} title={title} />;
+};
 
 export const COMPONENT_NAME = 'History';
 
@@ -20,8 +21,6 @@ const HistoryScreen = () => {
   const [historyItems, setHistoryItems] = useState<HistoryEntry[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [inputText, setInputText] = useState<string>('');
-
-  const netInfo = useNetInfo();
 
   const getBooksData = async (search: string = '') => {
     setLoading(true);
@@ -39,14 +38,6 @@ const HistoryScreen = () => {
   useEffect(() => {
     getBooksData(inputText);
   }, [inputText]);
-
-  if (!netInfo.isConnected) {
-    return (
-      <View style={styles.wholeScreenCenter}>
-        <Typography size={20}>You don't have internet :'(</Typography>
-      </View>
-    );
-  }
 
   return (
     <>

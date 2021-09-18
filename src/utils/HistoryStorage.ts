@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RouteParams } from '../screens/BookDetails/BookDetails';
 
 const STORAGE_KEY = '@History';
@@ -75,6 +75,8 @@ const search = async (text: string): Promise<HistoryEntry[]> => {
         (s) => s.params.id.toString() === text || s.params.title.toLowerCase().includes(text),
       );
     }
+
+    return state;
   } catch (err) {
     console.error('Error searching in HistoryStorage', err);
   }
