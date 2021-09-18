@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, FlatList, TouchableOpacity, View } from 'react-native';
 import { useNetInfo } from '@react-native-community/netinfo';
-
 import styles from './styles';
-import { DefaultButton, Header, Separator, Typography } from '../../components';
+import { Header, Separator, Typography } from '../../components';
 import { Books } from '../../services';
 import { goToScreen } from '../../navigation/controls';
 import { colors } from '../../utils/theme';
+import TextInputIcon from '../../components/TextInputIcon';
 
 const ListItem = ({ id, title }: { id: number; title: string }) => (
   <TouchableOpacity
@@ -32,6 +32,7 @@ export const COMPONENT_NAME = 'Home';
 const HomeScreen = () => {
   const [books, setBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [inputText, setInputText] = useState('');
 
   const netInfo = useNetInfo();
 
@@ -73,10 +74,17 @@ const HomeScreen = () => {
 
   return (
     <>
-      <Header showBackButton={false} title="Home Screen" />
       <View style={styles.mainContainer}>
         <Separator size={20} />
-        <DefaultButton text="Go To ... Screen" onPress={() => {}} />
+        <TextInputIcon
+          // allowFontScaling={false}
+          // autoCapitalize="none"
+          // autoCorrect={false}
+          placeholder="Search a book"
+          value={inputText}
+          onChangeText={setInputText}
+          // style={styles.textInput}
+        />
         <Separator size={20} />
         <FlatList
           keyExtractor={flatlistKeyExtractor}
