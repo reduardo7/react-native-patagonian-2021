@@ -3,21 +3,21 @@ import { ActivityIndicator, Alert, FlatList, View } from 'react-native';
 import { useNetInfo } from '@react-native-community/netinfo';
 import styles from './styles';
 import { BookDetailsItem, Separator, Typography } from '../../components';
-import { Books } from '../../services';
 import { colors } from '../../utils/theme';
 import TextInputIcon from '../../components/TextInputIcon';
 import { IIF } from '../../utils/IF';
+import HistoryStorage, { HistoryEntry } from '../../utils/HistoryStorage';
 
-const flatlistKeyExtractor = (item: Book) => `${item.id}`;
+const flatlistKeyExtractor = (item: HistoryEntry) => `${item.params.id}`;
 
-const renderFlatlistItem = ({ item }: { item: Book }) => (
-  <BookDetailsItem id={item.id} title={item.title} />
+const renderFlatlistItem = ({ item }: { item: HistoryEntry }) => (
+  <BookDetailsItem id={item.params.id} title={item.params.title} />
 );
 
 export const COMPONENT_NAME = 'History';
 
 const HistoryScreen = () => {
-  const [books, setBooks] = useState<Book[]>([]);
+  const [historyItems, setHistoryItems] = useState<HistoryEntry[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [inputText, setInputText] = useState<string>('');
 
@@ -27,8 +27,8 @@ const HistoryScreen = () => {
     setLoading(true);
 
     try {
-      const { data } = await Books.search(search);
-      setBooks(data);
+      const data = await HistoryStorage.search(search);
+      setHistoryItems(data);
     } catch (error) {
       Alert.alert('Error getting books on Home Screen');
     } finally {
@@ -52,7 +52,11 @@ const HistoryScreen = () => {
     <>
       <View style={styles.mainContainer}>
         <Separator size={20} />
-        <TextInputIcon placeholder="Search a book" value={inputText} onChangeText={setInputText} />
+        <TextInputIcon
+          placeholder="Search a book in the history"
+          value={inputText}
+          onChangeText={setInputText}
+        />
         <Separator size={20} />
         {IIF(loading)
           .THEN(
@@ -63,7 +67,7 @@ const HistoryScreen = () => {
               keyExtractor={flatlistKeyExtractor}
               refreshing={loading}
               onRefresh={getBooksData}
-              data={books}
+              data={historyItems}
               renderItem={renderFlatlistItem}
               ItemSeparatorComponent={Separator}
               contentContainerStyle={styles.flatlistContent}

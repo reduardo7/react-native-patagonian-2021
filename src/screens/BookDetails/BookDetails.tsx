@@ -6,8 +6,11 @@ import styles from './styles';
 import { Header, Separator, Typography } from '../../components';
 import { Books } from '../../services';
 import { colors } from '../../utils/theme';
+import HistoryStorage from '../../utils/HistoryStorage';
 
-export type Route = RouteProp<Record<string, Book>, string>;
+export type RouteParams = Pick<Book, 'id' | 'title'>;
+
+export type Route = RouteProp<Record<string, RouteParams>, string>;
 
 export const COMPONENT_NAME = 'BookDetails';
 
@@ -30,8 +33,9 @@ const BookDetailsScreen = ({ route }: { route: Route }) => {
   };
 
   useEffect(() => {
+    HistoryStorage.put({ id, title });
     getBooksData();
-  }, []);
+  }, [id, title]);
 
   if (loading) {
     return (

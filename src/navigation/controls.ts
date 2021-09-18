@@ -3,16 +3,16 @@ import {
   CommonActions,
   StackActions,
 } from '@react-navigation/native';
-import { COMPONENT_NAME as BOOK_DETAILS } from '../screens/BookDetails/BookDetails';
+import {
+  COMPONENT_NAME as BOOK_DETAILS,
+  RouteParams as BookDetailsRouteParams,
+} from '../screens/BookDetails/BookDetails';
 import { COMPONENT_NAME as HOME } from '../screens/Home/Home';
 import { COMPONENT_NAME as HISTORY } from '../screens/History/History';
 import { COMPONENT_NAME as TAB_NAVIGATOR } from './TabNavigator';
 
 interface ScreenProps {
-  [BOOK_DETAILS]: {
-    id: number;
-    title: string;
-  };
+  [BOOK_DETAILS]: BookDetailsRouteParams;
   [HOME]: never;
   [TAB_NAVIGATOR]: never;
   [HISTORY]: never;
