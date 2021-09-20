@@ -1,6 +1,20 @@
 import Config from 'react-native-config';
 
-const BOOLEAN_VALUES = ['true', 't', 'on', 'yes', '1', 'enable', 'enabled'];
+const BOOLEAN_VALUES = [
+  '1',
+  'a',
+  'activated',
+  'active',
+  'enable',
+  'enabled',
+  'on',
+  's',
+  'si',
+  't',
+  'true',
+  'y',
+  'yes',
+];
 
 const ENV = Config.ENV;
 export const isProduction = ENV === 'production';
