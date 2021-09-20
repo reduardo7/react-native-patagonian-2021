@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, Alert, FlatList, View } from 'react-native';
 import styles from './styles';
 import { BookDetailsItem, Separator } from '../../components';
@@ -7,8 +7,9 @@ import TextInputIcon from '../../components/TextInputIcon';
 import { IIF } from '../../utils/IF';
 import HistoryStorage, { HistoryEntry } from '../../utils/HistoryStorage';
 import { formatDate } from '../../utils/date';
+import { useFocusEffect } from '@react-navigation/native';
 
-const flatlistKeyExtractor = (item: HistoryEntry) => `${item.params.id}`;
+const flatlistKeyExtractor = (item: HistoryEntry) => `${item.timestamp}`;
 
 const renderFlatlistItem = ({ item }: { item: HistoryEntry }) => {
   const title = `${item.params.title}\n(${formatDate(item.timestamp)})`;
@@ -22,22 +23,19 @@ const HistoryScreen = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [inputText, setInputText] = useState<string>('');
 
-  const getBooksData = async (search: string = '') => {
+  const getBooksData = useCallback(() => {
     setLoading(true);
 
-    try {
-      const data = await HistoryStorage.search(search);
-      setHistoryItems(data);
-    } catch (error) {
-      Alert.alert('Error getting books on Home Screen');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getBooksData(inputText);
+    HistoryStorage.search(inputText)
+      .then((data) => setHistoryItems(data))
+      .catch((err) => {
+        console.error('Error getting books on Home Screen:a', err);
+        Alert.alert('Error getting books on Home Screen');
+      })
+      .finally(() => setLoading(false));
   }, [inputText]);
+
+  useFocusEffect(getBooksData);
 
   return (
     <>
