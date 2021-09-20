@@ -8,6 +8,11 @@ interface Book {
   plot_take_place_years: string[];
   book_covers: BookCover[];
   characters: number[];
+
+  /**
+   * Custom field.
+   */
+  img: string;
 }
 
 interface BookCover {

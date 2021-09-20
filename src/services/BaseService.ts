@@ -4,41 +4,54 @@ interface IResponse<T> {
   data: T;
 }
 
-/**
- * @see https://github.com/theDavidBarton/the-harry-potter-database
- */
 export abstract class BaseService<T = any> {
   abstract get model(): string;
 
-  public async request<R = T | T[]>(uri: string): Promise<IResponse<R>> {
-    let data: R;
-
-    // Remove starting "/"
-    uri = uri.replace(/^\/+/, '');
-
-    const url = `${API_URL}/api/1/${uri}`;
-
+  protected async _fetch(url: string): Promise<Response> {
     try {
       const response = await fetch(url);
-      data = await response.json();
+
+      if (response.status !== 200) {
+        console.error('Unexpected response status:', { url, response });
+        throw new Error(`Unexpected response status=${response.status} fetching [${url}]`);
+      }
+
+      return response;
+    } catch (err) {
+      console.error(`[BS21] Error fetching [${url}]:`, err);
+      throw err;
+    }
+  }
+
+  protected async _request<R = any>(url: string): Promise<IResponse<R>> {
+    try {
+      const response = await this._fetch(url);
+      const data: R = await response.json();
 
       // Show response
       if (LOG_REQUESTS) {
         console.info(`> ${url}`, JSON.stringify(data, null, 2));
       }
 
-      if (response.status !== 200) {
-        console.error('Unexpected response status:', { url, response });
-        throw new Error(`Unexpected response status=${response.status} fetching [${url}]`);
-      }
+      return {
+        data,
+      } as IResponse<R>;
     } catch (err) {
-      console.error(`Error fetching [${url}]:`, err);
+      console.error(`[BS46] Error requesting [${url}]:`, err);
       throw err;
     }
+  }
 
-    return {
-      data,
-    } as IResponse<R>;
+  /**
+   *
+   * @param uri API URI
+   * @returns Response data.
+   * @see https://github.com/theDavidBarton/the-harry-potter-database
+   */
+  public async request<R = T | T[]>(uri: string): Promise<IResponse<R>> {
+    // Remove starting "/"
+    uri = uri.replace(/^\/+/, '');
+    return await this._request<R>(`${API_URL}/api/1/${uri}`);
   }
 
   /**
@@ -47,8 +60,12 @@ export abstract class BaseService<T = any> {
    * @param search Search text.
    * @returns Result items.
    */
-  public search(search: string) {
-    return this.request<T[]>(`/${this.model}?search=${encodeURI(search.trim())}`);
+  public async search(search: string) {
+    const response = await this.request<T[]>(`/${this.model}?search=${encodeURI(search.trim())}`);
+    for (const data of response.data) {
+      await this.dataFormat(data);
+    }
+    return response;
   }
 
   /**
@@ -56,8 +73,12 @@ export abstract class BaseService<T = any> {
    *
    * @returns All items.
    */
-  public getAll() {
-    return this.request<T[]>(`/${this.model}/all`);
+  public async getAll() {
+    const response = await this.request<T[]>(`/${this.model}/all`);
+    for (const data of response.data) {
+      await this.dataFormat(data);
+    }
+    return response;
   }
 
   /**
@@ -67,6 +88,13 @@ export abstract class BaseService<T = any> {
    * @returns Item details.
    */
   public async getById(id: number) {
-    return this.request<T>(`/${this.model}/${id}`);
+    const response = await this.request<T>(`/${this.model}/${id}`);
+    await this.dataFormat(response.data);
+    return response;
+  }
+
+  protected async dataFormat(data: T): Promise<void> {
+    const d = data as any;
+    d._ = new Date();
   }
 }

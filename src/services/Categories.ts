@@ -1,7 +1,7 @@
 import { BaseService } from './BaseService';
 
 class CategoriesService extends BaseService {
-  get model(): string {
+  override get model(): string {
     return 'categories';
   }
 }
