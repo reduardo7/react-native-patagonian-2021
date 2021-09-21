@@ -17,6 +17,7 @@ interface ScreenProps {
   [HOME]: never;
   [TAB_NAVIGATOR]: never;
   [HISTORY]: never;
+  [CHARACTERS]: never;
 }
 
 type ScreenNames = keyof ScreenProps;
