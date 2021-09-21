@@ -1,7 +1,9 @@
 import { StyleSheet } from 'react-native';
+import { colors } from '../../utils/theme';
+import { DEVICE_WIDTH } from '../../utils/dimensions';
 
 const styles = StyleSheet.create({
-  searchSection: {
+  searchSection2: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
@@ -12,6 +14,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     width: '90%',
   },
+  searchSection: {
+    alignContent: 'center',
+    backgroundColor: colors.lightOrange,
+    borderRadius: 50,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    width: DEVICE_WIDTH * 0.9,
+  },
   searchIcon: {
     padding: 10,
   },
@@ -21,8 +31,10 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     paddingBottom: 10,
     paddingLeft: 0,
-    backgroundColor: '#fff',
-    color: '#424242',
+    borderRadius: 50,
+
+    backgroundColor: colors.lightOrange,
+    color: '#7F0909',
   },
 });
 

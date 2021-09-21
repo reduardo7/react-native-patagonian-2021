@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, FlatList, View } from 'react-native';
 import { useNetInfo } from '@react-native-community/netinfo';
 import styles from './styles';
-import { BookDetailsItem, Separator, Typography } from '../../components';
+import { BookDetailsItem, Separator, Typography, SectionSubTitle } from '../../components';
 import { Books } from '../../services';
 import { colors } from '../../utils/theme';
 import TextInputIcon from '../../components/TextInputIcon';
@@ -51,15 +51,18 @@ const HomeScreen = () => {
   return (
     <>
       <View style={styles.mainContainer}>
-        <Separator size={20} />
+        <Separator size={100} />
         <TextInputIcon placeholder="Search a book" value={inputText} onChangeText={setInputText} />
         <Separator size={20} />
+        <SectionSubTitle text="BOOKS" />
+
         {IIF(loading)
           .THEN(
             <ActivityIndicator size="large" style={styles.flatList} color={colors.mainOrange} />,
           )
           .ELSE(
             <FlatList
+              numColumns={2}
               keyExtractor={flatlistKeyExtractor}
               refreshing={loading}
               onRefresh={getBooksData}
