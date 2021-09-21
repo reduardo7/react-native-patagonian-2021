@@ -27,7 +27,7 @@ const TextInputIcon: React.FC<Props> = ({
 
   return (
     <View style={styles.searchSection}>
-      <MaterialIcon name={icon} style={styles.searchIcon} size={20} color="##7F0909" />
+      <MaterialIcon name={icon} style={styles.searchIcon} size={20} color="#7F0909" />
       <TextInput
         style={styles.input}
         placeholder={placeholder}

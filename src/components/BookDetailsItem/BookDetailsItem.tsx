@@ -19,7 +19,6 @@ const BookDetailsItem: React.FC<Props> = ({ title, imageCover }) => {
       {imageCover && imageCover !== '' ? (
         <>
           <View style={styles.imageFrame}>
-            console.log(title);
             <Image source={{ uri: imageCover }} style={styles.image} />
           </View>
           <CustomText
