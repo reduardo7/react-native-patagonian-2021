@@ -5,5 +5,4 @@ export { default as Header } from './Header';
 export { default as Separator } from './Separator';
 export { default as Typography } from './Typography';
 export { default as SectionSubTitle } from './SectionSubTitle';
-export { default as CardBooks } from './CardBooks';
 export { default as CustomText } from './CustomText';
