@@ -9,7 +9,7 @@
     "test": "jest",
     "check-ts": "tsc --watch --noEmit --skipLibCheck",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "reinstall:ios": "rm -rf ios/Pods ; pod-install",
+    "reinstall:ios": "rm -rf ios/Pods ; npx pod-install",
     "dev:fix:launcher": "npm install -g react-native ; npm install react-native"
   },
   "dependencies": {
@@ -19,7 +19,7 @@
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/native-stack": "^6.1.0",
     "react": "17.0.1",
-    "react-native": "0.64.1",
+    "react-native": "^0.64.1",
     "react-native-config": "^1.4.3",
     "react-native-safe-area-context": "^3.3.0",
     "react-native-screens": "^3.5.0",
