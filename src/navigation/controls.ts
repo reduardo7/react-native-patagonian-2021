@@ -9,6 +9,7 @@ import {
 } from '../screens/BookDetails/BookDetails';
 import { COMPONENT_NAME as HOME } from '../screens/Home/Home';
 import { COMPONENT_NAME as HISTORY } from '../screens/History/History';
+import { COMPONENT_NAME as CHARACTERS } from '../screens/Characters/Characters';
 import { COMPONENT_NAME as TAB_NAVIGATOR } from './TabNavigator';
 
 interface ScreenProps {

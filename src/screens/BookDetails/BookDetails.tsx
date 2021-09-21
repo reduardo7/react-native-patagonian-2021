@@ -40,7 +40,7 @@ const BookDetailsScreen = ({ route }: { route: Route }) => {
   if (loading) {
     return (
       <>
-        <Header title={title} />
+        <Header />
         <View style={styles.wholeScreenCenter}>
           <ActivityIndicator size="large" color={colors.mainOrange} />
         </View>
@@ -50,10 +50,9 @@ const BookDetailsScreen = ({ route }: { route: Route }) => {
 
   return (
     <>
-      <Header title={title} />
+      <Header />
       <View style={styles.mainContainer}>
-        <Typography size={18}>Book Detail Screen</Typography>
-        <Separator />
+        <Separator size={70} />
         <Typography>{JSON.stringify(book, null, 2)}</Typography>
       </View>
     </>

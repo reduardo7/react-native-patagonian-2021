@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, Alert, FlatList, View } from 'react-native';
 import styles from './styles';
-import { BookDetailsItem, Separator } from '../../components';
+import { BookDetailsItem, Separator, Header, SectionSubTitle } from '../../components';
 import { colors } from '../../utils/theme';
 import TextInputIcon from '../../components/TextInputIcon';
 import { IIF } from '../../utils/IF';
@@ -39,14 +39,16 @@ const HistoryScreen = () => {
 
   return (
     <>
+      <Header />
       <View style={styles.mainContainer}>
-        <Separator size={20} />
+        <Separator size={70} />
         <TextInputIcon
           placeholder="Search a book in the history"
           value={inputText}
           onChangeText={setInputText}
         />
         <Separator size={20} />
+        <SectionSubTitle text="HISTORY" />
         {IIF(loading)
           .THEN(
             <ActivityIndicator size="large" style={styles.flatList} color={colors.mainOrange} />,
