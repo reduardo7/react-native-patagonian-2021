@@ -11,6 +11,7 @@ const HISTORY_LIMIT = 50;
 export interface HistoryEntry {
   timestamp: Date;
   params: RouteParams;
+  url?: string;
 }
 
 /**
@@ -41,8 +42,9 @@ const get = async (invertSort = true): Promise<HistoryEntry[]> => {
  * Put new state.
  *
  * @param params New entry.
+ * @param url Picture URL form `book.book_covers[0].URL`.
  */
-const put = async (params: RouteParams) => {
+const put = async (params: RouteParams, url?: string) => {
   const state = await get(false);
 
   if (state.length >= HISTORY_LIMIT) {
@@ -52,6 +54,7 @@ const put = async (params: RouteParams) => {
   state.push({
     timestamp: new Date(),
     params,
+    url,
   });
 
   const value = JSON.stringify(state);

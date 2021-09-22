@@ -9,6 +9,14 @@ const styles = StyleSheet.create({
   flatlistContent: {
     paddingHorizontal: 20,
   },
+  cardListContainer: {
+    backgroundColor: '#F9F9F9',
+    borderRadius: 30,
+    paddingHorizontal: 18,
+    paddingTop: 20,
+    marginHorizontal: 20,
+    marginBottom: 280,
+  },
   mainContainer: {
     alignItems: 'center',
     flex: 1,
