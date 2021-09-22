@@ -13,7 +13,7 @@ interface Props {
 const InfoBoxCharacter = ({ species, gender, house }: Props) => {
   return (
     <View style={styles.mainContainer}>
-      <Image source={{ uri: '../../assets/images/silueta.jpg' }} style={styles.imageView} />
+      <Image source={require('../../assets/images/silueta.jpg')} style={styles.imageView} />
       <View style={styles.infoBlock}>
         <View style={styles.infoData}>
           <Typography variant="bold">Species: </Typography>

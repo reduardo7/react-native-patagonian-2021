@@ -326,7 +326,7 @@ PODS:
     - React-perflogger (= 0.64.1)
   - RNCAsyncStorage (1.15.8):
     - React-Core
-  - RNScreens (3.7.2):
+  - RNScreens (3.6.0):
     - React-Core
     - React-RCTImage
   - RNVectorIcons (8.1.0):
@@ -482,7 +482,7 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   FBLazyVector: 7b423f9e248eae65987838148c36eec1dbfe0b53
-  FBReactNativeSpec: b74ba1b25edfdb6e601b2e3eace4c2a17e633deb
+  FBReactNativeSpec: b96cc0ff252713961f07b08d06dc963b51d5163a
   Flipper: d3da1aa199aad94455ae725e9f3aa43f3ec17021
   Flipper-DoubleConversion: 38631e41ef4f9b12861c67d17cb5518d06badc41
   Flipper-Folly: 755929a4f851b2fb2c347d533a23f191b008554c
@@ -520,11 +520,11 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: ff951a0c241bfaefc4940a3f1f1a229e7cb32fa6
   ReactCommon: bedc99ed4dae329c4fcf128d0c31b9115e5365ca
   RNCAsyncStorage: e8b8d6320a0dd90eb610fb0d0b1ef90596697c69
-  RNScreens: 0591543e343c7444ea1756b6265d81a4295922c9
+  RNScreens: eb0dfb2d6b21d2d7f980ad46b14eb306d2f1062e
   RNVectorIcons: 31cebfcf94e8cf8686eb5303ae0357da64d7a5a4
   Yoga: a7de31c64fe738607e7a3803e3f591a4b1df7393
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
 PODFILE CHECKSUM: e245096fe1083db4a62ae2cb646ef52a10f60f65
 
-COCOAPODS: 1.10.2
+COCOAPODS: 1.10.1
