@@ -5,10 +5,10 @@ import Typography from '../Typography';
 import styles from './styles';
 
 interface Props {
-  cover: string;
-  author: string;
-  publishDate: string;
-  plot: string;
+  cover: Book['book_covers'][0]['URL'];
+  author: Book['author'];
+  publishDate: Book['publish_date'][0]['UK'];
+  plot: Book['plot_take_place_years'];
 }
 
 const InfoBox = ({ cover, author, publishDate, plot }: Props) => {

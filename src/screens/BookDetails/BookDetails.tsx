@@ -39,7 +39,7 @@ const BookDetailsScreen = ({ route }: { route: Route }) => {
     getBooksData();
   }, [getBooksData, id, title, url]);
 
-  if (loading) {
+  if (loading || !book) {
     return (
       <>
         <Header />
@@ -57,13 +57,13 @@ const BookDetailsScreen = ({ route }: { route: Route }) => {
 
       <ScrollView>
         <View style={styles.mainContainer}>
-          <TitleBox title={book[0].title} textSize={25} />
+          <TitleBox title={book.title} textSize={25} />
           <Separator size={20} />
           <InfoBox
-            cover={book[0].book_covers[0].URL}
-            author={book[0].author}
-            publishDate={book[0].publish_date[0].UK}
-            plot={book[0].plot_take_place_years}
+            cover={book.book_covers[0].URL}
+            author={book.author}
+            publishDate={book.publish_date[0].UK}
+            plot={book.plot_take_place_years}
           />
           <Separator size={20} />
           <DescriptionBox description="Sinopsis: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer turpis erat, euismod ac mi nec, faucibus fermentum neque. Ut posuere commodo libero tempus scelerisque. Duis tempus, tellus eu volutpat pretium, lectus ligula lobortis diam, ac elementum neque sem ut ligula. Vivamus volutpat feugiat augue, vel laoreet sapien tempor at. Duis sed scelerisque felis. Donec sagittis tellus nisl, in egestas metus suscipit nec. Mauris scelerisque nisl diam, eu aliquam ipsum egestas ut. Mauris fermentum ipsum eget magna fringilla, eget efficitur odio sollicitudin. Curabitur porttitor augue quis elementum vulputate." />

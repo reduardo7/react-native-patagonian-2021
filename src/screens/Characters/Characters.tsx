@@ -17,7 +17,7 @@ import { IIF } from '../../utils/IF';
 const flatlistKeyExtractor = (item: Character) => `${item.id}`;
 
 const renderFlatlistItem = ({ item }: { item: Character }) => {
-  return <CharacterDetailsItem id={item.id} title={item.name} />;
+  return <CharacterDetailsItem id={item.id} name={item.name} />;
 };
 
 export const COMPONENT_NAME = 'Characters';
