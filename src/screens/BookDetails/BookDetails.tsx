@@ -3,7 +3,7 @@ import { ActivityIndicator, Alert, ScrollView, View } from 'react-native';
 import { RouteProp } from '@react-navigation/native';
 
 import styles from './styles';
-import { DescriptionBox, Header, InfoBox, Separator, TitleBox, Typography } from '../../components';
+import { DescriptionBox, Header, InfoBox, Separator, TitleBox } from '../../components';
 import { Books } from '../../services';
 import { colors } from '../../utils/theme';
 import HistoryStorage from '../../utils/HistoryStorage';
@@ -50,10 +50,6 @@ const BookDetailsScreen = ({ route }: { route: Route }) => {
     );
   }
 
-  /*     <View style={styles.mainContainer}>
-        <Separator size={70} />
-        <Typography>{JSON.stringify(book, null, 2)}</Typography>
-      </View>*/
   return (
     <>
       <Header />

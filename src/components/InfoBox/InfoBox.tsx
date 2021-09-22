@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Image, View } from 'react-native';
-import { Typography } from '..';
+import Typography from '../Typography';
 import styles from './styles';
 
 interface Props {

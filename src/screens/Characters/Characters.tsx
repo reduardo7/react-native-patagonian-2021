@@ -2,7 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, FlatList, View } from 'react-native';
 import { useNetInfo } from '@react-native-community/netinfo';
 import styles from './styles';
-import { BookDetailsItem, Separator, Typography, SectionSubTitle, Header } from '../../components';
+import {
+  CharacterDetailsItem,
+  Separator,
+  Typography,
+  SectionSubTitle,
+  Header,
+} from '../../components';
 import { Characters } from '../../services';
 import { colors } from '../../utils/theme';
 import TextInputIcon from '../../components/TextInputIcon';
@@ -11,7 +17,7 @@ import { IIF } from '../../utils/IF';
 const flatlistKeyExtractor = (item: Character) => `${item.id}`;
 
 const renderFlatlistItem = ({ item }: { item: Character }) => {
-  return <BookDetailsItem id={item.id} title={item.name} />;
+  return <CharacterDetailsItem id={item.id} title={item.name} />;
 };
 
 export const COMPONENT_NAME = 'Characters';
