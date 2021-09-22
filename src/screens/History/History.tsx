@@ -13,7 +13,7 @@ const flatlistKeyExtractor = (item: HistoryEntry) => `${item.timestamp}`;
 
 const renderFlatlistItem = ({ item }: { item: HistoryEntry }) => {
   const title = `${item.params.title}\n(${formatDate(item.timestamp)})`;
-  return <BookDetailsItem id={item.params.id} title={title} />;
+  return <BookDetailsItem id={item.params.id} title={title} imageCover={item.url} />;
 };
 
 export const COMPONENT_NAME = 'History';
@@ -29,7 +29,7 @@ const HistoryScreen = () => {
     HistoryStorage.search(inputText)
       .then((data) => setHistoryItems(data))
       .catch((err) => {
-        console.error('Error getting books on Home Screen:a', err);
+        console.error('Error getting books on Home Screen:', err);
         Alert.alert('Error getting books on Home Screen');
       })
       .finally(() => setLoading(false));

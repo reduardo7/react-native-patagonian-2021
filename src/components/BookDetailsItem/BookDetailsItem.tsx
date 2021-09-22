@@ -5,8 +5,6 @@ import { goToScreen } from '../../navigation/controls';
 import { CustomText } from '..';
 import { colors } from '../../utils/theme';
 
-const placeholderImg = require('../../assets/images/placeholder.png');
-
 interface Props {
   id: number;
   title: string;
@@ -14,12 +12,15 @@ interface Props {
 }
 
 const BookDetailsItem: React.FC<Props> = ({ id, title, imageCover }) => {
-  const onPress = () => goToScreen('BookDetails', { id, title });
+  const onPress = () => goToScreen('BookDetails', { id, title, url: imageCover });
+  const imgSource = imageCover
+    ? { uri: imageCover }
+    : require('../../assets/images/placeholder.png');
 
   return (
     <TouchableOpacity style={styles.cardContainer} onPress={onPress}>
       <View style={styles.imageFrame}>
-        <Image source={{ uri: imageCover || placeholderImg }} style={styles.image} />
+        <Image source={imgSource} style={styles.image} />
       </View>
       <CustomText
         numberOfLines={2}
