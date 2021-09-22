@@ -1,21 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  /*  mainContainer: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-    width: '100%',
-  },
-  wholeScreenCenter: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-    width: '100%',
-  },*/
-
   mainContainer: {
-    //  backgroundColor: colors.darkGray,
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
@@ -24,7 +10,6 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   subContainer: {
-    //  backgroundColor: colors.darkGray,
     paddingHorizontal: 20,
   },
   wholeScreenCenter: {

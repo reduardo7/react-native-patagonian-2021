@@ -80,6 +80,9 @@ export abstract class BaseService<T = any> {
    * @returns Item details.
    */
   public async getById(id: number) {
-    return this.request<T>(`/${this.model}/${id}`);
+    const response = await this.request<T>(`/${this.model}/${id}`);
+    // @ts-ignore
+    response.data = response.data[0];
+    return response;
   }
 }

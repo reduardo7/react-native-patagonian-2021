@@ -1,30 +1,19 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  /*  mainContainer: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-    width: '100%',
-  },
-  wholeScreenCenter: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-    width: '100%',
-  },*/
-
   mainContainer: {
-    //  backgroundColor: colors.darkGray,
     alignItems: 'center',
     flex: 1,
+    flexDirection: 'column',
     justifyContent: 'center',
     paddingTop: 20,
     paddingBottom: 70,
     width: '100%',
   },
+ mainContainer2: {
+    flex: 1,
+  },
   subContainer: {
-    //  backgroundColor: colors.darkGray,
     paddingHorizontal: 20,
   },
   wholeScreenCenter: {
@@ -32,6 +21,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     width: '100%',
+  },
+  image: {
+    flex: 1,
+    justifyContent: 'center',
   },
 });
 
