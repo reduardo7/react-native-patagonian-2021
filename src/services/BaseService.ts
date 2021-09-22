@@ -4,11 +4,20 @@ interface IResponse<T> {
   data: T;
 }
 
+function sortData(sortField: any) {
+  return (a: any, b: any) => {
+    const sa = (a[sortField] as string) || '';
+    const sb = (b[sortField] as string) || '';
+    return sa.localeCompare(sb);
+  };
+}
+
 /**
  * @see https://github.com/theDavidBarton/the-harry-potter-database
  */
 export abstract class BaseService<T = any> {
   abstract get model(): string;
+  abstract get sortField(): keyof T;
 
   public async request<R = T | T[]>(uri: string): Promise<IResponse<R>> {
     let data: R;
@@ -47,8 +56,10 @@ export abstract class BaseService<T = any> {
    * @param search Search text.
    * @returns Result items.
    */
-  public search(search: string) {
-    return this.request<T[]>(`/${this.model}?search=${encodeURI(search.trim())}`);
+  public async search(search: string) {
+    const r = await this.request<T[]>(`/${this.model}?search=${encodeURI(search.trim())}`);
+    r.data = r.data.sort(sortData(this.sortField));
+    return r;
   }
 
   /**
@@ -56,8 +67,10 @@ export abstract class BaseService<T = any> {
    *
    * @returns All items.
    */
-  public getAll() {
-    return this.request<T[]>(`/${this.model}/all`);
+  public async getAll() {
+    const r = await this.request<T[]>(`/${this.model}/all`);
+    r.data = r.data.sort(sortData(this.sortField));
+    return r;
   }
 
   /**
