@@ -11,8 +11,8 @@ interface Props {
   imageCover?: string;
 }
 
-const BookDetailsItem: React.FC<Props> = ({ id, title, imageCover }) => {
-  const onPress = () => goToScreen('BookDetails', { id, title, url: imageCover });
+const CharacterDetailsItem: React.FC<Props> = ({ id, title, imageCover }) => {
+  const onPress = () => goToScreen('CharacterDetails', { id, title, url: imageCover });
   const imgSource = imageCover
     ? { uri: imageCover }
     : require('../../assets/images/placeholder.png');
@@ -29,4 +29,4 @@ const BookDetailsItem: React.FC<Props> = ({ id, title, imageCover }) => {
   );
 };
 
-export default BookDetailsItem;
+export default CharacterDetailsItem;

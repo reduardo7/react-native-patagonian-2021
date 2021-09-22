@@ -7,6 +7,10 @@ import {
   COMPONENT_NAME as BOOK_DETAILS,
   RouteParams as BookDetailsRouteParams,
 } from '../screens/BookDetails/BookDetails';
+import {
+  COMPONENT_NAME as CHARACTER_DETAILS,
+  RouteParams as CharacterDetailsRouteParams,
+} from '../screens/BookDetails/BookDetails';
 import { COMPONENT_NAME as HOME } from '../screens/Home/Home';
 import { COMPONENT_NAME as CHARACTERS } from '../screens/Characters/Characters';
 import { COMPONENT_NAME as HISTORY } from '../screens/History/History';
@@ -18,6 +22,8 @@ interface ScreenProps {
   [TAB_NAVIGATOR]: never;
   [HISTORY]: never;
   [CHARACTERS]: never;
+  [CHARACTER_DETAILS]: CharacterDetailsRouteParams;
+
 }
 
 type ScreenNames = keyof ScreenProps;
