@@ -1,19 +1,24 @@
 import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, Alert, FlatList, View } from 'react-native';
 import styles from './styles';
-import { BookDetailsItem, Separator, Header, SectionSubTitle } from '../../components';
+import { Separator, Header, SectionSubTitle, HistoryItem } from '../../components';
 import { colors } from '../../utils/theme';
 import TextInputIcon from '../../components/TextInputIcon';
 import { IIF } from '../../utils/IF';
 import HistoryStorage, { HistoryEntry } from '../../utils/HistoryStorage';
-import { formatDate } from '../../utils/date';
 import { useFocusEffect } from '@react-navigation/native';
 
 const flatlistKeyExtractor = (item: HistoryEntry) => `${item.timestamp}`;
 
 const renderFlatlistItem = ({ item }: { item: HistoryEntry }) => {
-  const title = `${item.params.title}\n(${formatDate(item.timestamp)})`;
-  return <BookDetailsItem id={item.params.id} title={title} imageCover={item.url} />;
+  return (
+    <HistoryItem
+      id={item.params.id}
+      title={item.params.title}
+      time={item.timestamp}
+      imageCover={item.params.url}
+    />
+  );
 };
 
 export const COMPONENT_NAME = 'History';

@@ -11,7 +11,6 @@ import { IIF } from '../../utils/IF';
 const flatlistKeyExtractor = (item: Book) => `${item.id}`;
 
 const renderFlatlistItem = ({ item }: { item: Book }) => {
-  console.info(item.book_covers);
   return <BookDetailsItem id={item.id} title={item.title} imageCover={item.book_covers[0]?.URL} />;
 };
 
