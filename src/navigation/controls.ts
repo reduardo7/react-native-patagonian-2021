@@ -10,7 +10,7 @@ import {
 import {
   COMPONENT_NAME as CHARACTER_DETAILS,
   RouteParams as CharacterDetailsRouteParams,
-} from '../screens/BookDetails/BookDetails';
+} from '../screens/CharacterDetails/CharacterDetails';
 import { COMPONENT_NAME as HOME } from '../screens/Home/Home';
 import { COMPONENT_NAME as CHARACTERS } from '../screens/Characters/Characters';
 import { COMPONENT_NAME as HISTORY } from '../screens/History/History';
@@ -23,7 +23,6 @@ interface ScreenProps {
   [HISTORY]: never;
   [CHARACTERS]: never;
   [CHARACTER_DETAILS]: CharacterDetailsRouteParams;
-
 }
 
 type ScreenNames = keyof ScreenProps;

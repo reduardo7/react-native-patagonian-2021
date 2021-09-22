@@ -6,16 +6,13 @@ import { CustomText } from '..';
 import { colors } from '../../utils/theme';
 
 interface Props {
-  id: number;
-  title: string;
-  imageCover?: string;
+  id: Character['id'];
+  name: Character['name'];
 }
 
-const CharacterDetailsItem: React.FC<Props> = ({ id, title, imageCover }) => {
-  const onPress = () => goToScreen('CharacterDetails', { id, title, url: imageCover });
-  const imgSource = imageCover
-    ? { uri: imageCover }
-    : require('../../assets/images/placeholder.png');
+const CharacterDetailsItem: React.FC<Props> = ({ id, name }) => {
+  const onPress = () => goToScreen('CharacterDetails', { id, name });
+  const imgSource = require('../../assets/images/placeholder.png');
 
   return (
     <TouchableOpacity style={styles.cardContainer} onPress={onPress}>
@@ -23,7 +20,7 @@ const CharacterDetailsItem: React.FC<Props> = ({ id, title, imageCover }) => {
         <Image source={imgSource} style={styles.image} />
       </View>
       <CustomText numberOfLines={2} size={14} align="center" color={colors.darkGray} variant="bold">
-        {title}
+        {name}
       </CustomText>
     </TouchableOpacity>
   );
