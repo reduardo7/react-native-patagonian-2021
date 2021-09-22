@@ -22,13 +22,7 @@ const BookDetailsItem: React.FC<Props> = ({ id, title, imageCover }) => {
       <View style={styles.imageFrame}>
         <Image source={imgSource} style={styles.image} />
       </View>
-      <CustomText
-        numberOfLines={2}
-        size={14}
-        align="center"
-        color={colors.lightOrange}
-        variant="bold"
-      >
+      <CustomText numberOfLines={2} size={14} align="center" color={colors.darkGray} variant="bold">
         {title}
       </CustomText>
     </TouchableOpacity>
