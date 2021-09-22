@@ -33,7 +33,7 @@ const CharacterDetailsScreen = ({ route }: { route: Route }) => {
   }, [id, name]);
 
   useEffect(() => {
-    HistoryStorage.put({ id, title: name });
+    HistoryStorage.put('character', { id, title: name });
     getCharactersData();
   }, [getCharactersData, id, name]);
 

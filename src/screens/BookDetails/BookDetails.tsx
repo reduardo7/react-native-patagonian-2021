@@ -35,7 +35,7 @@ const BookDetailsScreen = ({ route }: { route: Route }) => {
   }, [id, title]);
 
   useEffect(() => {
-    HistoryStorage.put({ id, title, url });
+    HistoryStorage.put('book', { id, title, url });
     getBooksData();
   }, [getBooksData, id, title, url]);
 

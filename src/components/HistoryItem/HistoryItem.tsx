@@ -5,18 +5,23 @@ import { goToScreen } from '../../navigation/controls';
 import { CustomText } from '..';
 import { colors } from '../../utils/theme';
 import { formatDate } from '../../utils/date';
+import { HistoryType } from '../../utils/HistoryStorage';
 
 interface Props {
   id: number;
   title: string;
   time: Date;
+  type: HistoryType;
   imageCover?: string;
 }
 
-const HistoryItem: React.FC<Props> = ({ id, title, time, imageCover }) => {
+const HistoryItem: React.FC<Props> = ({ id, title, time, type, imageCover }) => {
   const timeStr = formatDate(time);
 
-  const onPress = () => goToScreen('BookDetails', { id, title, url: imageCover });
+  const onPress = () =>
+    type === 'character'
+      ? goToScreen('CharacterDetails', { id, name: title })
+      : goToScreen('BookDetails', { id, title, url: imageCover });
 
   const imgSource = imageCover
     ? { uri: imageCover }

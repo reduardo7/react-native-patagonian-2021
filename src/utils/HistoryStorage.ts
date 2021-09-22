@@ -1,5 +1,4 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { RouteParams } from '../screens/BookDetails/BookDetails';
 
 const STORAGE_KEY = '@History';
 
@@ -8,9 +7,16 @@ const STORAGE_KEY = '@History';
  */
 const HISTORY_LIMIT = 50;
 
+export type HistoryType = 'book' | 'character';
+
 export interface HistoryEntry {
   timestamp: Date;
-  params: RouteParams;
+  type: HistoryType;
+  params: {
+    id: number;
+    title: string;
+    url?: string;
+  };
 }
 
 /**
@@ -43,9 +49,9 @@ const get = async (invertSort = true): Promise<HistoryEntry[]> => {
  * @param params New entry.
  * @param url Picture URL form `book.book_covers[0].URL`.
  */
-const put = async (params: RouteParams) => {
+const put = async (type: HistoryType, params: HistoryEntry['params']) => {
   const state = await get(false);
-  console.debug('Add new History', params);
+  console.debug(`Add new History [${type}]`, params);
 
   if (state.length >= HISTORY_LIMIT) {
     state.shift();
@@ -53,6 +59,7 @@ const put = async (params: RouteParams) => {
 
   state.push({
     timestamp: new Date(),
+    type,
     params,
   });
 

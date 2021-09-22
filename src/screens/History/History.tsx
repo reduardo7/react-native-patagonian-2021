@@ -17,6 +17,7 @@ const renderFlatlistItem = ({ item }: { item: HistoryEntry }) => {
       title={item.params.title}
       time={item.timestamp}
       imageCover={item.params.url}
+      type={item.type}
     />
   );
 };
@@ -34,8 +35,8 @@ const HistoryScreen = () => {
     HistoryStorage.search(inputText)
       .then((data) => setHistoryItems(data))
       .catch((err) => {
-        console.error('Error getting books on Home Screen:', err);
-        Alert.alert('Error getting books on Home Screen');
+        console.error('Error getting history data:', err);
+        Alert.alert('Error getting history data');
       })
       .finally(() => setLoading(false));
   }, [inputText]);
